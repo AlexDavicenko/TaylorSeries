@@ -1,7 +1,7 @@
-from itertools import count
 import matplotlib.pyplot as plt 
 import math
 import numpy as np
+
 
 def applyRes(arr, res):
     return np.array(list(map(lambda x: x/res, arr)))
@@ -13,15 +13,12 @@ def taylorSineSeries(n, r): #n(Int) - depth of taylor series, r(Int) - range of 
     xaxis = np.array(range(-r*res,r*res))
     xaxis = applyRes(xaxis, res)
 
-    print(xaxis)
-    
-
     yaxis = []
     for point in xaxis:
         counter = 0
         sum = 0
         for _ in range(n):
-            sum += (  (point**((2*counter) + 1))   * (((-1)**counter) /( math.factorial((2*counter)+1)) ) )            
+            sum += ((point**((2*counter) + 1)) * (((-1)**counter) /( math.factorial((2*counter)+1))))            
 
 
             counter += 1
@@ -59,17 +56,11 @@ def taylorExponential(n, r): #n(Int) - depth of taylor series, r(Int)-
     plt.show()
     
 
-taylorExponential(15, 10)
-
-
 def taylorCosineSeries(n, r): #n(Int) - depth of taylor series, r(Int) - range of values plotted in negative and positive direction
     res = 100
 
     xaxis = np.array(range(-r*res,r*res))
     xaxis = applyRes(xaxis, res)
-
-    print(xaxis)
-    
 
     yaxis = []
     for point in xaxis:
@@ -77,7 +68,7 @@ def taylorCosineSeries(n, r): #n(Int) - depth of taylor series, r(Int) - range o
         sum = 0
 
         for _ in range(n):
-            sum += ( ((-1)**counter)  /  (math.factorial(2*counter)))  * (point**(2*counter))
+            sum += (((-1)**counter)/(math.factorial(2*counter)))*(point**(2*counter))
 
             counter +=1
         yaxis.append(sum)
@@ -87,5 +78,3 @@ def taylorCosineSeries(n, r): #n(Int) - depth of taylor series, r(Int) - range o
     plt.axvline(0,color = "black")
     plt.show()  
 
-
-taylorCosineSeries(10,5)
